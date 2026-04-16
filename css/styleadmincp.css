@@ -1,0 +1,314 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+}
+
+/* ===== LAYOUT ===== */
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 250px;
+    background: linear-gradient(135deg, #0072ff, #00c6ff);
+
+    color: #fff;
+    padding: 10px;
+}
+
+.list_sidebar {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.list_sidebar li {
+    margin-bottom: 5px;
+}
+
+.list_sidebar a {
+    display: block;
+    padding: 10px;
+    color: #bae6fd;
+    text-decoration: none;
+}
+
+.list_sidebar a:hover {
+    background: #0284c7;
+    color: #fff;
+}
+
+/* ===== SUBMENU ===== */
+.submenu {
+    display: none;
+    padding-left: 15px;
+}
+
+.menu-parent.active .submenu {
+    display: block;
+}
+
+/* ===== MAIN ===== */
+.main {
+    flex: 1;
+    padding: 20px;
+    background: #fff;
+}
+
+
+/* ===== ADMIN HEADER OPTIMIZED ===== */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px; /* Giảm padding dọc xuống 10px */
+    background: #fff;
+    border-bottom: 1px solid #e2e8f0;
+    height: 60px; /* Cố định chiều cao để không bị quá khổ */
+    box-sizing: border-box;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Khoảng cách giữa Logo và Tiêu đề trang */
+}
+
+.logo {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0c4a6e;
+    letter-spacing: -0.5px;
+}
+
+.page-title h2 {
+    margin: 0;
+    font-size: 16px; /* Thu nhỏ tiêu đề Dashboard */
+    color: #1e293b;
+}
+
+.page-title small {
+    color: #64748b;
+    font-size: 11px;
+}
+
+/* ===== USER BLOCK OPTIMIZED ===== */
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.user-block {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-text {
+    text-align: right;
+    line-height: 1.2;
+}
+
+.user-text strong {
+    display: block;
+    font-size: 13px;
+    color: #1e293b;
+}
+
+.user-text small {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.user-block img {
+    width: 35px; /* Giảm nhẹ kích thước avatar */
+    height: 35px;
+    border-radius: 8px; /* Bo góc vuông nhẹ cho hiện đại thay vì tròn xoe */
+    object-fit: cover;
+    border: 1px solid #e2e8f0;
+}
+/* Tối giản bảng và layout */
+.table-container {
+    padding: 10px;
+    background: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.container-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.container-header h3 { margin: 0; font-size: 1.2rem; text-transform: uppercase; }
+
+/* Bảng kẻ ô truyền thống */
+.flight_table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.flight_table th, .flight_table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.flight_table th {
+    background: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Badge đơn giản */
+.code-text { font-weight: bold; color: #000; }
+
+/* Cấu hình ghế dạng text đơn giản */
+.seat-config { font-size: 13px; color: #333; }
+
+/* Nút bấm đơn giản */
+.btn-action {
+    text-decoration: none;
+    color: #0056b3;
+    font-size: 13px;
+    margin-right: 10px;
+}
+.btn-action:hover { text-decoration: underline; }
+.delete-text { color: #c00; }
+
+.btn-them {
+    text-decoration: none;
+    background: #333;
+    color: #fff;
+    padding: 5px 15px;
+    font-size: 13px;
+}
+
+/* Container của Form */
+.form-container {
+    max-width: 500px; /* Bóp nhỏ lại cho gọn */
+    margin: 10px 0;
+    font-family: Arial, sans-serif;
+}
+
+.page-title {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+/* Group nhập liệu */
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Tránh tràn viền */
+    font-size: 14px;
+}
+
+/* Nút bấm đơn giản */
+.btn-submit {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.btn-submit:hover {
+    background: #000;
+}
+/* Khung chứa nội dung */
+.dashboard-content {
+    font-family: Arial, sans-serif;
+    padding: 10px;
+}
+
+/* Bộ lọc chuyến bay */
+.filter-box {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+}
+
+.filter-box label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Tiêu đề trang */
+.page-title {
+    font-size: 18px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+/* Bảng danh sách vé */
+.ticket-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+}
+
+.ticket-table th, .ticket-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.ticket-table th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+/* Nhãn phân loại hạng ghế */
+.category-header {
+    background: #444;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* Thông báo trống */
+.empty-msg {
+    padding: 20px;
+    border: 1px dashed #999;
+    text-align: center;
+    color: #666;
+}
+/* Thêm vào phần style của bạn */
+.price-text { 
+    color: #b91c1c; 
+    font-weight: bold; 
+    font-family: 'Courier New', Courier, monospace; 
+}
+
+ 
