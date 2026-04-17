@@ -1,13 +1,9 @@
 <?php
 session_start();
 include('../../config/config.php');
-
-/* ================== HÀM ================== */
-
 function escape($mysqli, $data) {
     return mysqli_real_escape_string($mysqli, $data);
 }
-
 function goForm($msg, $action){
     echo "<script>
             alert('$msg');
@@ -15,7 +11,6 @@ function goForm($msg, $action){
           </script>";
     exit();
 }
-
 function goList($msg, $action){
     echo "<script>
             alert('$msg');
@@ -23,8 +18,6 @@ function goList($msg, $action){
           </script>";
     exit();
 }
-
-/* ================== THÊM ================== */
 if(isset($_POST['themchuyenbay'])){
 
     $machuyenbay = strtoupper(escape($mysqli, $_POST['MACHUYENBAY'] ?? ''));
@@ -93,15 +86,12 @@ if(isset($_POST['themchuyenbay'])){
     goList("✅ Thêm thành công!", "quanlychuyenbay");
 }
 
-
-/* ================== SỬA ================== */
 elseif(isset($_POST['suachuyenbay'])){
-
     $machuyenbay = escape($mysqli, $_POST['MACHUYENBAY'] ?? '');
-    $mamaybay    = escape($mysqli, $_POST['MAMAYBAY'] ?? '');
-    $matuyen     = escape($mysqli, $_POST['MATUYEN'] ?? '');
-    $ngaydi      = $_POST['NGAYDI'] ?? '';
-    $giodi       = $_POST['GIODI'] ?? '';
+    $mamaybay  = escape($mysqli, $_POST['MAMAYBAY'] ?? '');
+    $matuyen = escape($mysqli, $_POST['MATUYEN'] ?? '');
+    $ngaydi = $_POST['NGAYDI'] ?? '';
+    $giodi = $_POST['GIODI'] ?? '';
 
     if(empty($machuyenbay) || empty($mamaybay) || empty($matuyen) || empty($ngaydi) || empty($giodi)){
         goList("❌ Thiếu dữ liệu", "quanlychuyenbay");
@@ -160,26 +150,18 @@ elseif(isset($_POST['suachuyenbay'])){
     goList("✅ Cập nhật thành công", "quanlychuyenbay");
 }
 
-
-/* ================== HỦY ================== */
 elseif(isset($_GET['type']) && $_GET['type'] == 'huy'){
-
     $id = escape($mysqli, $_GET['machuyenbay']);
-
-    // 🔥 CHỈ HỦY KHI CHƯA BAY
     $res = mysqli_query($mysqli, "SELECT TRANGTHAI_CB FROM chuyenbay WHERE MACHUYENBAY='$id'");
     $row = mysqli_fetch_assoc($res);
-
     if($row['TRANGTHAI_CB'] != 1){
         goList("❌ Chỉ được hủy chuyến chưa bay!", "quanlychuyenbay");
     }
-
     mysqli_query($mysqli, "
         UPDATE chuyenbay 
         SET TRANGTHAI_CB = 0 
         WHERE MACHUYENBAY='$id'
     ");
-
     goList("✅ Đã hủy chuyến!", "quanlychuyenbay");
 }
 ?>
