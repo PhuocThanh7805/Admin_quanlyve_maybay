@@ -64,17 +64,17 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px; /* Giảm padding dọc xuống 10px */
+    padding: 10px 20px; 
     background: #fff;
     border-bottom: 1px solid #e2e8f0;
-    height: 60px; /* Cố định chiều cao để không bị quá khổ */
+    height: 60px; 
     box-sizing: border-box;
 }
 
 .header-left {
     display: flex;
     align-items: center;
-    gap: 30px; /* Khoảng cách giữa Logo và Tiêu đề trang */
+    gap: 30px; 
 }
 
 .logo {
@@ -124,13 +124,13 @@ body {
 }
 
 .user-block img {
-    width: 35px; /* Giảm nhẹ kích thước avatar */
+    width: 35px; 
     height: 35px;
-    border-radius: 8px; /* Bo góc vuông nhẹ cho hiện đại thay vì tròn xoe */
+    border-radius: 8px; 
     object-fit: cover;
     border: 1px solid #e2e8f0;
 }
-/* Tối giản bảng và layout */
+
 .table-container {
     padding: 10px;
     background: #fff;
@@ -166,13 +166,12 @@ body {
     font-weight: bold;
 }
 
-/* Badge đơn giản */
+
 .code-text { font-weight: bold; color: #000; }
 
-/* Cấu hình ghế dạng text đơn giản */
 .seat-config { font-size: 13px; color: #333; }
 
-/* Nút bấm đơn giản */
+
 .btn-action {
     text-decoration: none;
     color: #0056b3;
@@ -190,9 +189,9 @@ body {
     font-size: 13px;
 }
 
-/* Container của Form */
+
 .form-container {
-    max-width: 500px; /* Bóp nhỏ lại cho gọn */
+    max-width: 500px; 
     margin: 10px 0;
     font-family: Arial, sans-serif;
 }
@@ -241,13 +240,13 @@ body {
 .btn-submit:hover {
     background: #000;
 }
-/* Khung chứa nội dung */
+
 .dashboard-content {
     font-family: Arial, sans-serif;
     padding: 10px;
 }
 
-/* Bộ lọc chuyến bay */
+
 .filter-box {
     margin-bottom: 20px;
     padding: 15px;
@@ -260,7 +259,7 @@ body {
     font-size: 14px;
 }
 
-/* Tiêu đề trang */
+
 .page-title {
     font-size: 18px;
     text-transform: uppercase;
@@ -269,7 +268,6 @@ body {
     margin-bottom: 15px;
 }
 
-/* Bảng danh sách vé */
 .ticket-table {
     width: 100%;
     border-collapse: collapse;
@@ -288,7 +286,7 @@ body {
     color: #333;
 }
 
-/* Nhãn phân loại hạng ghế */
+
 .category-header {
     background: #444;
     color: #fff;
@@ -297,14 +295,14 @@ body {
     font-weight: bold;
 }
 
-/* Thông báo trống */
+
 .empty-msg {
     padding: 20px;
     border: 1px dashed #999;
     text-align: center;
     color: #666;
 }
-/* Thêm vào phần style của bạn */
+
 .price-text { 
     color: #b91c1c; 
     font-weight: bold; 
