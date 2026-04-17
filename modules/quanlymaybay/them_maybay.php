@@ -1,5 +1,4 @@
 <style>
-    /* ===== CONTAINER ===== */
     .form-container {
         max-width: 750px;
         margin: 30px auto;
@@ -10,10 +9,8 @@
         font-family: 'Segoe UI', Tahoma, sans-serif;
         overflow: hidden;
     }
-
-    /* ===== HEADER (Giữ nguyên màu xanh định danh) ===== */
     .form-container .page-title {
-        margin: 0 !important; /* Force để không bị dính margin từ các file khác */
+        margin: 0 !important; 
         padding: 18px 25px;
         font-size: 18px;
         font-weight: bold;
@@ -22,8 +19,6 @@
         text-transform: uppercase;
         border: none;
     }
-
-    /* ===== BODY FORM ===== */
     .form-container form {
         padding: 25px;
     }
@@ -40,8 +35,6 @@
         margin-bottom: 6px;
         text-transform: uppercase;
     }
-
-    /* ===== INPUT & SELECT ===== */
     .form-group input,
     .form-group select {
         width: 100%;
@@ -59,8 +52,6 @@
         box-shadow: 0 0 5px rgba(0,114,255,0.3);
         outline: none;
     }
-
-    /* ===== NÚT XÁC NHẬN (Gradient Xanh) ===== */
     .btn-submit {
         padding: 10px 20px;
         border-radius: 6px;
@@ -81,8 +72,6 @@
         box-shadow: 0 4px 10px rgba(0,114,255,0.4);
         opacity: 0.9;
     }
-
-    /* ===== NÚT QUAY LẠI (Màu xám, tránh trùng màu Header) ===== */
     .btn-back {
         font-size: 13px;
         margin-left: 15px;
@@ -92,21 +81,18 @@
     }
 
     .btn-back:hover {
-        color: #e74c3c; /* Hover sang màu đỏ cho dễ phân biệt */
+        color: #e74c3c;
         text-decoration: underline;
     }
 </style>
 
 <div class="form-container">
-    <!-- Class page-title giờ đã được bảo vệ bởi .form-container -->
     <h2 class="page-title">Thêm máy bay mới</h2>
-
     <form method="POST" action="modules/quanlymaybay/xuly_maybay.php">
         <div class="form-group">
             <label>Mã máy bay</label>
             <input type="text" name="MAMAYBAY" placeholder="Ví dụ: VN-A321" required>
         </div>
-
         <div class="form-group">
             <label>Tên máy bay</label>
             <input type="text" name="TENMAYBAY" placeholder="Ví dụ: Airbus A321" required>
@@ -126,7 +112,6 @@
                 <input type="number" name="SOGHE_EC" value="0" min="0" required>
             </div>
         </div>
-
         <div class="form-group">
             <label>Hãng bay</label>
             <select name="MAHANG" required>
