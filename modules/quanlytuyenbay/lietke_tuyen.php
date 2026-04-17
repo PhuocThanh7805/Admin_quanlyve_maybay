@@ -1,7 +1,5 @@
 <?php
-// --- GIỮ NGUYÊN LOGIC PHP CỦA BẠN ---
 $keyword = isset($_GET['keyword']) ? trim($_GET['keyword']) : '';
-
 $sql = "
     SELECT tb.*, dd1.TENDIADIEM AS DI, dd2.TENDIADIEM AS DEN 
     FROM tuyenbay tb
@@ -10,7 +8,6 @@ $sql = "
     JOIN diadiem dd1 ON sb1.MADIADIEM = dd1.MADIADIEM
     JOIN diadiem dd2 ON sb2.MADIADIEM = dd2.MADIADIEM
 ";
-
 if ($keyword !== '') {
     $sql .= " WHERE 
         dd1.TENDIADIEM LIKE ? 
@@ -19,7 +16,6 @@ if ($keyword !== '') {
         OR tb.SANBAYDEN LIKE ?
         OR tb.MATUYEN LIKE ?
     ORDER BY tb.MATUYEN DESC";
-
     $stmt = mysqli_prepare($mysqli, $sql);
     $search = "%$keyword%";
     mysqli_stmt_bind_param($stmt, "sssss", $search, $search, $search, $search, $search);
@@ -30,12 +26,8 @@ if ($keyword !== '') {
     $query_lietke_tuyen = mysqli_query($mysqli, $sql);
 }
 ?>
-
-<!-- GOOGLE FONTS -->
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
-/* ===== CORE DESIGN ===== */
 .admin-wrap {
     font-family: 'Plus Jakarta Sans', sans-serif;
     padding: 25px;
@@ -225,15 +217,12 @@ if ($keyword !== '') {
 </style>
 
 <div class="admin-wrap">
-    <!-- HEADER -->
     <div class="page-header">
         <h2>Quản lý Tuyến bay</h2>
         <a href="index.php?action=them_tuyenbay" class="btn-action">
             <span>+</span> Thêm Tuyến mới
         </a>
     </div>
-
-    <!-- TOOLBAR -->
     <div class="toolbar">
         <form method="GET" action="index.php" style="display:flex; align-items:center;">
             <input type="hidden" name="action" value="lietke_tuyenbay">
@@ -251,8 +240,6 @@ if ($keyword !== '') {
             <span style="font-size: 14px; color: #64748b;">Hiển thị <strong><?= mysqli_num_rows($query_lietke_tuyen) ?></strong> kết quả</span>
         </div>
     </div>
-
-    <!-- TABLE -->
     <div class="table-responsive">
         <table class="admin-table">
             <thead>
