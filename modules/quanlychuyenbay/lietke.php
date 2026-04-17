@@ -6,32 +6,19 @@ if (!function_exists('tinhGiaVeDayDu')) {
     echo "<p style='color:red; padding:20px; border:1px solid red;'>Lỗi: Không tìm thấy hàm định giá.</p>";
     return;
 }
-
-/* =========================
-   1. LẤY PARAM
-========================= */
 $ngay_loc = isset($_GET['ngay_loc']) ? $_GET['ngay_loc'] : date('Y-m-d');
 $keyword  = isset($_GET['keyword']) ? trim($_GET['keyword']) : '';
 $keyword  = mysqli_real_escape_string($mysqli, $keyword);
 
-/* =========================
-   2. BUILD WHERE
-========================= */
 $where = [];
 
 if (!empty($keyword)) {
-    // 👉 ƯU TIÊN SEARCH
     $where[] = "cb.MACHUYENBAY LIKE '%$keyword%'";
 } else {
-    // 👉 KHÔNG SEARCH → LỌC NGÀY
     $where[] = "DATE(cb.THOIGIANDI) = '$ngay_loc'";
 }
 
 $where_sql = implode(" AND ", $where);
-
-/* =========================
-   3. QUERY
-========================= */
 $sql = "SELECT cb.*, mb.TENMAYBAY, tb.GIACOBAN AS GIA_TUYEN, 
                sb_di.TENSANBAY AS TENSANBAY_DI, sb_den.TENSANBAY AS TENSANBAY_DEN,
                dd_di.TENDIADIEM AS DIADIEM_DI, dd_den.TENDIADIEM AS DIADIEM_DEN,
@@ -51,12 +38,7 @@ $sql = "SELECT cb.*, mb.TENMAYBAY, tb.GIACOBAN AS GIA_TUYEN,
         ORDER BY cb.THOIGIANDI ASC";
 
 $query = mysqli_query($mysqli, $sql);
-
-/* =========================
-   4. GROUP DATA
-========================= */
 $groups = ['truoc'=>[], 'dang'=>[], 'da_den'=>[], 'da_huy'=>[]];
-
 if ($query) {
     while ($row = mysqli_fetch_assoc($query)) {
         $st = (int)$row['TRANGTHAI_CB'];
@@ -69,9 +51,6 @@ if ($query) {
 ?>
 
 <style>
-/* =========================
-   1. LAYOUT
-========================= */
 .admin-wrap {
     font-family: 'Segoe UI', Tahoma, sans-serif;
     color: #333;
@@ -109,9 +88,6 @@ if ($query) {
     background: #fcfcfc;
 }
 
-/* =========================
-   3. TAB
-========================= */
 .tab-nav {
     margin: 20px 0 15px 0;
     border-bottom: 2px solid #2c3e50;
@@ -125,28 +101,23 @@ if ($query) {
     border-radius: 6px 6px 0 0;
     font-size: 13px;
     transition: 0.25s;
-    
-    /* mặc định */
     background: #e9eef3;
     color: #555;
 }
 
-/* TAB ACTIVE */
+
 .tab-link.active {
     background: linear-gradient(135deg, #0072ff, #00c6ff);
     color: #fff;
     font-weight: bold;
 }
 
-/* HOVER */
+
 .tab-link:hover {
     background: linear-gradient(135deg, #0072ff, #00c6ff);
     color: #fff;
 }
 
-/* =========================
-   4. PRICE
-========================= */
 .price-cell {
     color: #c0392b;
     font-weight: bold;
@@ -160,10 +131,6 @@ if ($query) {
     color: #888;
     margin-top: 2px;
 }
-
-/* =========================
-   5. BUTTON (CHÍNH)
-========================= */
 .btn-action {
     padding: 6px 12px;
     border-radius: 5px;
@@ -196,9 +163,6 @@ if ($query) {
     padding: 8px 15px;
 }
 
-/* =========================
-   7. STATUS
-========================= */
 .stt-dot {
     width: 8px;
     height: 8px;
@@ -206,10 +170,6 @@ if ($query) {
     display: inline-block;
     margin-right: 5px;
 }
-
-/* =========================
-   8. TOOLBAR
-========================= */
 .toolbar {
     background: #fdfdfd;
     padding: 15px;
@@ -217,10 +177,6 @@ if ($query) {
     border-radius: 8px;
     margin-bottom: 20px;
 }
-
-/* =========================
-   9. TEXT
-========================= */
 .text-muted {
     color: #888;
 }
@@ -235,7 +191,7 @@ if ($query) {
     border: none !important;
 }
 
-/* Hover đẹp hơn */
+
 .btn-action:hover {
     opacity: 0.95;
     transform: translateY(-1px);
@@ -254,7 +210,7 @@ input[name="keyword"]:focus {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 8px; /* tạo khoảng cách giữa nút */
+    gap: 8px;
     flex-wrap: nowrap;
 }
 
