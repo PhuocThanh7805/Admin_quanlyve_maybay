@@ -1,15 +1,8 @@
 <?php
-// include('../../config/config.php'); // Đảm bảo đã include ở file cha hoặc tại đây
-
 $id = isset($_GET['MAMAYBAY']) ? mysqli_real_escape_string($mysqli, $_GET['MAMAYBAY']) : '';
-
 if ($id == '') {
     die("<div style='padding:20px; color:red;'>❌ Thiếu mã máy bay!</div>");
 }
-
-/* ======================================================
-   1. KIỂM TRA TRẠNG THÁI VẬN HÀNH (CHUYẾN BAY)
-   ====================================================== */
 // Đếm tổng số chuyến bay của máy bay này
 $stmt1 = mysqli_prepare($mysqli, "SELECT COUNT(*) AS total_cb FROM chuyenbay WHERE MAMAYBAY = ?");
 mysqli_stmt_bind_param($stmt1, "s", $id);
@@ -17,7 +10,6 @@ mysqli_stmt_execute($stmt1);
 $res1 = mysqli_stmt_get_result($stmt1);
 $row1 = mysqli_fetch_assoc($res1);
 $total_cb = (int)$row1['total_cb'];
-
 // Tìm thời gian của chuyến bay sớm nhất sắp diễn ra
 $stmt2 = mysqli_prepare($mysqli, "SELECT MIN(THOIGIANDI) AS min_time FROM chuyenbay WHERE MAMAYBAY = ? AND THOIGIANDI >= NOW()");
 mysqli_stmt_bind_param($stmt2, "s", $id);
@@ -41,14 +33,9 @@ if ($total_cb > 0) {
             $lock_reason = "Chuyến bay sắp khởi hành trong vòng 10 ngày.";
         }
     } else {
-        // Có chuyến trong quá khứ nhưng không có chuyến tương lai: Vẫn cho sửa hoặc khóa tùy bạn
-        // Ở đây ta tạm để true nếu chỉ có chuyến cũ đã hoàn tất.
+        // Có chuyến trong quá khứ nhưng không có chuyến tương lai: Vẫn cho sửa hoặc khóa 
     }
 }
-
-/* ======================================================
-   2. LẤY DỮ LIỆU CHI TIẾT MÁY BAY
-   ====================================================== */
 $sql = "SELECT * FROM maybay WHERE MAMAYBAY='$id' LIMIT 1";
 $query = mysqli_query($mysqli, $sql);
 if (!$query || mysqli_num_rows($query) == 0) {
@@ -78,12 +65,9 @@ $dong = mysqli_fetch_assoc($query);
     .btn-back:hover { color: #0072ff; }
     .btn-disabled { background: #ccc; cursor: not-allowed; }
 </style>
-
 <div class="container">
     <div class="header">✏ Chỉnh sửa thông tin máy bay</div>
-
     <div class="content">
-        <!-- HIỂN THỊ THÔNG BÁO NẾU CÓ CHUYẾN BAY -->
         <?php if ($total_cb > 0): ?>
             <div class="info-box <?= $allow_edit ? 'status-warning' : 'status-locked' ?>">
                 <strong>📊 Thông tin vận hành:</strong><br>
@@ -91,7 +75,6 @@ $dong = mysqli_fetch_assoc($query);
                 <?php if (!empty($min_time)): ?>
                     - Chuyến bay sắp tới: <b><?= date('d/m/Y H:i', strtotime($min_time)) ?></b><br>
                 <?php endif; ?>
-                
                 <?php if ($allow_edit): ?>
                     <span style="color: #2e7d32;">✅ <b>Hệ thống vẫn cho phép sửa:</b> Vì chuyến bay còn cách xa (> 10 ngày).</span>
                 <?php else: ?>
@@ -99,11 +82,8 @@ $dong = mysqli_fetch_assoc($query);
                 <?php endif; ?>
             </div>
         <?php endif; ?>
-
         <form method="POST" action="modules/quanlymaybay/xuly_maybay.php">
-            <!-- Input ẩn để gửi mã máy bay qua POST -->
             <input type="hidden" name="MAMAYBAY" value="<?= $dong['MAMAYBAY'] ?>">
-
             <div class="row">
                 <label>Mã máy bay (Không thể sửa)</label>
                 <input type="text" value="<?= $dong['MAMAYBAY'] ?>" readonly disabled>
@@ -148,7 +128,6 @@ $dong = mysqli_fetch_assoc($query);
 
             <div class="btn-group">
                 <a href="javascript:history.back()" class="btn-back">⬅ Quay lại danh sách</a>
-                
                 <?php if ($allow_edit): ?>
                     <button type="submit" name="sua_maybay" class="btn">💾 Cập nhật thay đổi</button>
                 <?php else: ?>
