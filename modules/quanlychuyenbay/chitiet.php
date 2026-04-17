@@ -1,17 +1,11 @@
 <?php
 include(__DIR__ . '/set_trangthai.php');
 require_once(__DIR__ . '/../../includes/dinhgia.php');
-
 $id = $_GET['id'] ?? '';
 if (!$id) {
     die("<div style='padding:20px; color:red;'>Lỗi: Thiếu mã số chuyến bay.</div>");
 }
-
 $id = mysqli_real_escape_string($mysqli, $id);
-
-/* ========================================================
-   1. TRUY VẤN TOÀN BỘ DỮ LIỆU LIÊN QUAN (FULL JOIN)
-   ======================================================== */
 $sql = "SELECT cb.*, 
                mb.TENMAYBAY, mb.MAHANG, mb.SOGHE_BC, mb.SOGHE_FC, mb.SOGHE_EC,
                tb.GIACOBAN, tb.THOIGIANBAY,
