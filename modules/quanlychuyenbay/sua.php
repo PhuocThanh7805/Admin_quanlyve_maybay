@@ -1,5 +1,5 @@
 <?php
-// 1. KIỂM TRA ID
+//  KIỂM TRA ID
 if(isset($_GET['id'])){
     $machuyenbay = mysqli_real_escape_string($mysqli, $_GET['id']);
 } else {
@@ -7,12 +7,12 @@ if(isset($_GET['id'])){
     exit();
 }
 
-// 2. LẤY DỮ LIỆU
+// LẤY DỮ LIỆU
 $sql = mysqli_query($mysqli, "SELECT * FROM chuyenbay WHERE MACHUYENBAY='$machuyenbay' LIMIT 1");
 $cb = mysqli_fetch_assoc($sql);
 if(!$cb) die("❌ Không tìm thấy chuyến bay!");
 
-// 3. UPDATE
+// UPDATE
 if(isset($_POST['suachuyenbay'])){
     $mamaybay = $_POST['MAMAYBAY'];
     $matuyen  = $_POST['MATUYEN'];
@@ -81,8 +81,6 @@ $gio_ht  = date('H:i', strtotime($cb['THOIGIANDI']));
     overflow: hidden;
     font-family: 'Inter', 'Segoe UI', sans-serif;
 }
-
-/* ===== HEADER ===== */
 .form-header{
     padding: 18px 25px;
     background: var(--gradient);
@@ -98,12 +96,9 @@ $gio_ht  = date('H:i', strtotime($cb['THOIGIANDI']));
     font-weight: 700;
 }
 
-/* ===== BODY ===== */
 .form-body{
     padding: 30px;
 }
-
-/* ===== FORM ===== */
 .form-group{
     margin-bottom: 20px;
 }
@@ -141,7 +136,6 @@ $gio_ht  = date('H:i', strtotime($cb['THOIGIANDI']));
     gap: 20px;
 }
 
-/* ===== PREVIEW ===== */
 .preview-box{
     background: #f1f5f9;
     padding: 12px;
@@ -151,7 +145,6 @@ $gio_ht  = date('H:i', strtotime($cb['THOIGIANDI']));
     margin-bottom: 20px;
 }
 
-/* ===== BUTTON ===== */
 .form-actions{
     margin-top: 25px;
     text-align: right;
