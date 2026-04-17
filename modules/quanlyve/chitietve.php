@@ -1,12 +1,9 @@
 <?php
-// --- LOGIC PHP GIỮ NGUYÊN ---
 $mave = $_GET['mave'] ?? '';
 $mave = mysqli_real_escape_string($mysqli, $mave);
-
 if (empty($mave)) {
     die("<h2 style='text-align:center;color:red'>❌ Thiếu mã vé</h2>");
 }
-
 $sql = "
 SELECT 
     v.*, cb.THOIGIANDI, cb.MAMAYBAY,
@@ -27,14 +24,12 @@ LEFT JOIN chitiethoadon ct ON v.MAVE = ct.MAVE
 LEFT JOIN hoadon hd ON ct.MAHOADON = hd.MAHOADON
 WHERE v.MAVE = '$mave'
 ";
-
 $result = mysqli_query($mysqli, $sql);
 $row = mysqli_fetch_assoc($result);
 
 if (!$row) {
     die("<h2 style='text-align:center;color:red'>❌ Không tìm thấy vé</h2>");
 }
-
 $status_is_paid = isset($row['TRANGTHAIHOADON']) && $row['TRANGTHAIHOADON'] == 'DA_THANH_TOAN';
 $boardingTime = date('H:i', strtotime($row['THOIGIANDI'] . ' -40 minutes'));
 $secret = "SECRET_KEY_123";
@@ -204,8 +199,6 @@ $qrData = json_encode([
 
     .btn-print { background: var(--system-blue-dark); color: white; }
     .btn-back { background: #cbd5e1; color: #1e293b; margin-right: 10px; text-decoration: none; }
-
-    /* --- PHẦN SỬA LỖI IN --- */
     @media print {
         @page {
             margin: 0;
@@ -213,19 +206,15 @@ $qrData = json_encode([
         }
 
         html, body {
-            height: 99%; /* Tránh kích hoạt trang mới */
+            height: 99%;
             margin: 0 !important;
             padding: 0 !important;
             background: #fff !important;
-            overflow: hidden; /* Cắt bỏ hoàn toàn trang thứ 2 nếu có nội dung tràn */
+            overflow: hidden;
         }
-
-        /* Ẩn toàn bộ nội dung body bằng visibility (giữ lại vị trí cho render nhưng không hiện) */
         body {
             visibility: hidden;
         }
-
-        /* Chỉ hiển thị khung vé và đưa nó lên góc trên cùng */
         .itinerary-container {
             visibility: visible;
             position: absolute;
@@ -238,20 +227,15 @@ $qrData = json_encode([
             border: none !important;
             box-shadow: none !important;
         }
-
-        /* Ẩn khu vực nút bấm và icon máy in dư thừa */
         .action-area, .main-title-row div:last-child {
             display: none !important;
         }
-
-        /* Đảm bảo màu sắc được in ra (Chrome/Safari) */
         * {
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
         }
     }
 </style>
-
 <div class="itinerary-container">
     <div class="top-header">
         <div class="logo-area">CAMEO SKY☁️</div>
@@ -346,14 +330,11 @@ $qrData = json_encode([
                 <div style="font-size: 9px; color: var(--gray-text); margin-top: 5px;">Mã xác thực điện tử</div>
             </div>
         </div>
-        
         <p style="font-size: 15px; color: var(--gray-text); border-top: 1px solid #eee; padding-top: 15px; margin-bottom: 0;">
             * Chú ý: Thời gian được tính theo giờ địa phương tại các sân bay tương ứng. Quý khách vui lòng có mặt tại quầy thủ tục trước 120 phút.
         </p>
     </div>
 </div>
-
-<!-- Khu vực nút bấm sẽ bị ẩn khi in -->
 <div class="action-area" style="max-width: 850px; margin: 20px auto; text-align: right;">
    <a href="index.php?action=hienthive" class="btn btn-back">
     Quay lại
