@@ -1,5 +1,4 @@
 <?php
-// --- GIỮ NGUYÊN LOGIC PHP CỦA BẠN ---
 $id = isset($_GET['id']) ? mysqli_real_escape_string($mysqli, $_GET['id']) : '';
 if ($id == '') { die("Thiếu ID tuyến bay!"); }
 
@@ -41,8 +40,6 @@ while ($row = mysqli_fetch_assoc($query_sanbay)) { $ds_sanbay[] = $row; }
     box-shadow: 0 12px 35px rgba(0,0,0,0.08);
     overflow: hidden;
 }
-
-/* ===== HEADER (ĐỒNG BỘ HEADER CHÍNH) ===== */
 .form-header {
     background: linear-gradient(135deg, #0072ff, #00c6ff);
     padding: 18px 25px;
@@ -57,8 +54,6 @@ while ($row = mysqli_fetch_assoc($query_sanbay)) { $ds_sanbay[] = $row; }
     color: #fff;
     font-weight: 700;
 }
-
-/* NÚT QUAY LẠI (FIX KHÔNG NHẢY) */
 .btn-back {
     text-decoration: none;
     color: #fff;
@@ -72,13 +67,9 @@ while ($row = mysqli_fetch_assoc($query_sanbay)) { $ds_sanbay[] = $row; }
 .btn-back:hover {
     background: rgba(255,255,255,0.25);
 }
-
-/* ===== BODY ===== */
 .form-body {
     padding: 30px;
 }
-
-/* ===== GROUP ===== */
 .form-group {
     margin-bottom: 22px;
 }
@@ -110,14 +101,11 @@ while ($row = mysqli_fetch_assoc($query_sanbay)) { $ds_sanbay[] = $row; }
     box-shadow: 0 0 0 3px rgba(0,114,255,0.15);
 }
 
-/* DISABLED */
 .form-group input[readonly],
 .form-group select[disabled] {
     background: #f1f5f9;
     color: #94a3b8;
 }
-
-/* GRID */
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
